@@ -3,6 +3,7 @@ import { getAllContacts, getContactByIdService } from '../services/contacts.js';
 
 export const getContacts = async (req, res) => {
   try {
+     console.log('Received request to fetch all contacts');
     const contacts = await getAllContacts();
     res.status(200).json({
       status: 200,
