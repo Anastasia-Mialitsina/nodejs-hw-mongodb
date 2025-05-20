@@ -80,12 +80,13 @@ const patchContactById = async (req, res) => {
   });
 };
 
-module.exports = {
-  getAllContacts,
-  getContactById,
-  addContact,
-  deleteContactById,
-  updateContactById,
-  createContact,
-  patchContactById,
-};
+ export default {
+   getAllContacts,
+   getContactById,
+   addContact,
+   deleteContactById,
+   updateContactById,
+   createContact,
+   patchContactById,
+ };
+
