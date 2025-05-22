@@ -1,6 +1,6 @@
 // src/routers/contacts.js
 import express from 'express';
-import contactsController from '../controllers/contacts.js';
+import contactsController from '../controllers/contactsController.js';
 import ctrlWrapper from '../utils/ctrlWrapper.js';
 
 const router = express.Router();
