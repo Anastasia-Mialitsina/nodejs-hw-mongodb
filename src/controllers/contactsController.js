@@ -91,7 +91,7 @@
 
 
 // src/controllers/contactsController.js
-import * as contactsOperations from '../models/contacts.js';
+import * as contactsOperations from '../models/contactModel.js';
 import * as contactsService from '../services/contacts.js';
 import createError from 'http-errors';
 
