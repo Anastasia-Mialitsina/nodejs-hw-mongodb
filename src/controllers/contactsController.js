@@ -3,10 +3,25 @@ import * as contactsService from '../services/contacts.js';
 import createError from 'http-errors';
 
 export const getAllContacts = async (req, res) => {
-  const contacts = await contactsService.getAllContacts();
+  const page = parseInt(req.query.page) || 1;
+  const perPage = parseInt(req.query.perPage) || 10;
+  const sortBy = req.query.sortBy || 'name';
+  const sortOrder = req.query.sortOrder || 'asc';
+  const type = req.query.type;
+  const isFavourite = req.query.isFavourite; 
+
+  const contacts = await contactsService.getAllContacts(
+    page,
+    perPage,
+    sortBy,
+    sortOrder,
+    type, 
+    isFavourite 
+  );
+
   res.status(200).json({
     status: 200,
-    message: 'Success',
+    message: 'Successfully found contacts!',
     data: contacts,
   });
 };
