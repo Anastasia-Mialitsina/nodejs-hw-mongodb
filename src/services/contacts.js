@@ -16,12 +16,12 @@ export const getAllContacts = async (
     if (type) filter.contactType = type;
     if (isFavourite !== undefined) filter.isFavourite = isFavourite === 'true';
 
-    const totalItems = await Contact.countDocuments(filter);
+    const totalItems = await Contact.countDocuments();
 
     const sortDirection = sortOrder === 'desc' ? -1 : 1;
     const sortOptions = { [sortBy]: sortDirection };
 
-    const contacts = await Contact.find(filter)
+    const contacts = await Contact.find()
       .sort(sortOptions)
       .skip(skip)
       .limit(perPage);
