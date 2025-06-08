@@ -4,12 +4,16 @@ import * as contactsController from '../controllers/contactsController.js';
 import ctrlWrapper from '../utils/ctrlWrapper.js';
 import validateBody from '../middlewares/validateBody.js';
 import isValidId from '../middlewares/isValidId.js';
+import authenticate from '../middlewares/authenticate.js'; 
+
 import {
   addContactSchema,
   patchContactSchema,
 } from '../schemas/contactSchemas.js';
 
 const router = express.Router();
+
+router.use(authenticate); 
 
 router.get('/', ctrlWrapper(contactsController.getAllContacts));
 router.get(
