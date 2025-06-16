@@ -1,87 +1,190 @@
 //src/controllers/auth.js
+// import * as authService from '../services/auth.js';
+// import createHttpError from 'http-errors';
+
+// export const register = async (req, res, next) => {
+//   try {
+//     const user = await authService.register(req.body);
+//     res.status(201).json({
+//       status: 201,
+//       message: 'Successfully registered a user!',
+//       data: {
+//         _id: user._id,
+//         name: user.name,
+//         email: user.email,
+//         createdAt: user.createdAt,
+//       },
+//     });
+//   } catch (error) {
+//     next(createHttpError(error.status || 500, error.message));
+//   }
+// };
+
+// export const login = async (req, res, next) => {
+//   try {
+//     const { email, password } = req.body;
+
+//     if (!email || !password) {
+//       throw createHttpError(400, 'Email and password are required');
+//     }
+
+//     const sessionData = await authService.login(email, password);
+
+//     res
+//       .cookie('refreshToken', sessionData.refreshToken, {
+//         httpOnly: true,
+//         maxAge: 30 * 24 * 60 * 60 * 1000,
+//         sameSite: 'strict',
+//         secure: process.env.NODE_ENV === 'production',
+//       })
+//       .status(200)
+//       .json({
+//         status: 'success',
+//         message: 'Successfully logged in an user!',
+//         data: {
+//           accessToken: sessionData.accessToken,
+//         },
+//       });
+//   } catch (error) {
+//     next(createHttpError(error.status || 500, error.message));
+//   }
+// };
+
+// export const refreshSession = async (req, res, next) => {
+//   try {
+//     const refreshToken = req.cookies?.refreshToken;
+//     if (!refreshToken) {
+//       return next(createHttpError(401, 'No refresh token provided'));
+//     }
+
+//     const accessToken = await authService.refreshUserSession(refreshToken);
+
+//     res.status(200).json({
+//       status: 'success',
+//       message: 'Successfully refreshed a session!',
+//       data: { accessToken },
+//     });
+//   } catch (error) {
+//     next(createHttpError(error.status || 500, error.message));
+//   }
+// };
+
+// export const logoutController = async (req, res, next) => {
+//   try {
+//     const refreshToken = req.cookies?.refreshToken;
+
+//     await authService.logout(refreshToken);
+
+//     res.clearCookie('refreshToken', {
+//       httpOnly: true,
+//       sameSite: 'strict',
+//       secure: process.env.NODE_ENV === 'production',
+//     });
+
+//     res.status(204).send();
+//   } catch (error) {
+//     next(createHttpError(error.status || 500, error.message));
+//   }
+// };
+
+
+//6
+//src/controllers/auth.js
 import * as authService from '../services/auth.js';
 import createHttpError from 'http-errors';
 
 export const register = async (req, res, next) => {
-  try {
+try {
     const user = await authService.register(req.body);
-    res.status(201).json({
-      status: 201,
-      message: 'Successfully registered a user!',
-      data: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        createdAt: user.createdAt,
-      },
-    });
-  } catch (error) {
-    next(createHttpError(error.status || 500, error.message));
-  }
+     res.status(201).json({
+       status: 201,
+       message: 'Successfully registered a user!',
+       data: {
+         _id: user._id,
+         name: user.name,
+         email: user.email,
+         createdAt: user.createdAt,
+       },
+     });
+   } catch (error) {
+     next(createHttpError(error.status || 500, error.message));
+   }
 };
-
 export const login = async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
+   try {
+     const { email, password } = req.body;
 
-    if (!email || !password) {
-      throw createHttpError(400, 'Email and password are required');
-    }
+     if (!email || !password) {
+       throw createHttpError(400, 'Email and password are required');
+     }
 
-    const sessionData = await authService.login(email, password);
+     const sessionData = await authService.login(email, password);
 
-    res
-      .cookie('refreshToken', sessionData.refreshToken, {
-        httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        sameSite: 'strict',
-        secure: process.env.NODE_ENV === 'production',
-      })
-      .status(200)
-      .json({
-        status: 'success',
+     res
+       .cookie('refreshToken', sessionData.refreshToken, {
+         httpOnly: true,
+         maxAge: 30 * 24 * 60 * 60 * 1000,
+         sameSite: 'strict',
+         secure: process.env.NODE_ENV === 'production',
+       })
+       .status(200)
+       .json({
+         status: 'success',
         message: 'Successfully logged in an user!',
-        data: {
-          accessToken: sessionData.accessToken,
-        },
-      });
-  } catch (error) {
-    next(createHttpError(error.status || 500, error.message));
-  }
+         data: {
+           accessToken: sessionData.accessToken,
+         },
+       });
+   } catch (error) {
+     next(createHttpError(error.status || 500, error.message));
+   }
 };
-
 export const refreshSession = async (req, res, next) => {
-  try {
-    const refreshToken = req.cookies?.refreshToken;
-    if (!refreshToken) {
-      return next(createHttpError(401, 'No refresh token provided'));
-    }
+   try {
+     const refreshToken = req.cookies?.refreshToken;
+     if (!refreshToken) {
+       return next(createHttpError(401, 'No refresh token provided'));
+     }
 
-    const accessToken = await authService.refreshUserSession(refreshToken);
+     const accessToken = await authService.refreshUserSession(refreshToken);
 
-    res.status(200).json({
-      status: 'success',
-      message: 'Successfully refreshed a session!',
-      data: { accessToken },
-    });
-  } catch (error) {
-    next(createHttpError(error.status || 500, error.message));
-  }
+     res.status(200).json({
+       status: 'success',
+       message: 'Successfully refreshed a session!',
+       data: { accessToken },
+     });
+   } catch (error) {
+     next(createHttpError(error.status || 500, error.message));
+   }
 };
-
 export const logoutController = async (req, res, next) => {
   try {
-    const refreshToken = req.cookies?.refreshToken;
+     const refreshToken = req.cookies?.refreshToken;
 
-    await authService.logout(refreshToken);
+     await authService.logout(refreshToken);
 
-    res.clearCookie('refreshToken', {
-      httpOnly: true,
-      sameSite: 'strict',
-      secure: process.env.NODE_ENV === 'production',
+     res.clearCookie('refreshToken', {
+       httpOnly: true,
+       sameSite: 'strict',
+       secure: process.env.NODE_ENV === 'production',
+     });
+
+     res.status(204).send();
+   } catch (error) {
+     next(createHttpError(error.status || 500, error.message));
+   }
+};
+
+export const sendResetEmailController = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    await authService.sendResetEmail(email);
+
+    res.status(200).json({
+      status: 200,
+      message: 'Reset password email has been successfully sent.',
+      data: {},
     });
-
-    res.status(204).send();
   } catch (error) {
     next(createHttpError(error.status || 500, error.message));
   }
