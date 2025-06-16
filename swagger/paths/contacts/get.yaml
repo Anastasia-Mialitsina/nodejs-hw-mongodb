@@ -1,0 +1,60 @@
+#swagger/paths/contacts/get.yaml
+get:
+  tags:
+    - Contacts
+  summary: Отримати список контактів користувача
+  operationId: getContacts
+  description: Повертає список контактів з підтримкою пагінації, сортування і фільтрації
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: page
+      in: query
+      description: Номер сторінки
+      required: false
+      schema:
+        type: integer
+        default: 1
+    - name: perPage
+      in: query
+      description: Кількість контактів на сторінці
+      required: false
+      schema:
+        type: integer
+        default: 10
+    - name: sortBy
+      in: query
+      description: Поле для сортування
+      required: false
+      schema:
+        type: string
+        enum: [name, email, contactType]
+    - name: sortOrder
+      in: query
+      description: Порядок сортування
+      required: false
+      schema:
+        type: string
+        enum: [asc, desc]
+    - name: type
+      in: query
+      description: Тип контакту
+      required: false
+      schema:
+        type: string
+        enum: [work, home, personal]
+    - name: isFavourite
+      in: query
+      description: Фільтр по улюбленим контактам
+      required: false
+      schema:
+        type: boolean
+  responses:
+    '200':
+      description: Успішна відповідь із списком контактів
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/ContactsListResponse.yaml'
+    '401':
+      description: Неавторизований доступ

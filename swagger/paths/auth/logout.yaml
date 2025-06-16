@@ -1,0 +1,10 @@
+#swagger/paths/auth/logout.yaml
+post:
+  tags:
+    - Auth
+  summary: Logout user
+  operationId: logoutUser
+  description: Завершення сесії користувача
+  responses:
+    '204':
+      description: Успішний вихід
