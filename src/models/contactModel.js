@@ -42,7 +42,7 @@ const contactSchema = new mongoose.Schema(
       enum: ['work', 'home', 'personal'],
       default: 'personal',
     },
-    photo: { type: String, default: '' }, // ✅ добавлено
+    photo: { type: String, default: '' }, 
 
     userId: {
       type: mongoose.Schema.Types.ObjectId,

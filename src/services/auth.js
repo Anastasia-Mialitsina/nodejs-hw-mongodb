@@ -164,8 +164,6 @@ export const sendResetEmail = async (email) => {
   }
 };
 
-//Остальные функции register, login, refreshUserSession, logout остаются как есть
-
 export const register = async ({ name, email, password }) => {
   const existingUser = await User.findOne({ email });
   if (existingUser) {
