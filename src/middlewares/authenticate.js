@@ -24,7 +24,8 @@ const authenticate = (req, res, next) => {
 
    
     req.user = {
-      userId: payload.userId,
+      //userId: payload.userId,
+      _id: payload.userId,
       email: payload.email,
     };
 
