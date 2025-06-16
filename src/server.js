@@ -58,7 +58,11 @@ import errorHandler from './middlewares/errorHandler.js';
 import notFoundHandler from './middlewares/notFoundHandler.js';
 
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../docs/swagger.json';
+//import swaggerDocument from '../docs/swagger.json';
+import fs from 'fs';
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(new URL('../docs/swagger.json', import.meta.url))
+);
 //import swaggerDocument from '../docs/swagger.json' assert { type: 'json' };
 
 const app = express();
