@@ -1,0 +1,45 @@
+#swagger/paths/auth/reset-pwd.yaml
+post:
+  tags:
+    - Auth
+  summary: Скидання паролю
+  operationId: resetPassword
+  description: Скидає пароль за допомогою валідного JWT токену, що був отриманий з email
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - token
+            - password
+          properties:
+            token:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+            password:
+              type: string
+              format: password
+              example: NewSecurePass123
+  responses:
+    '200':
+      description: Пароль успішно скинуто
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Password has been successfully reset.
+              data:
+                type: object
+                example: {}
+    '401':
+      description: Токен протермінований або недійсний
+    '404':
+      description: Користувача не знайдено

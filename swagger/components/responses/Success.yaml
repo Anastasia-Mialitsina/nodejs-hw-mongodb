@@ -1,0 +1,15 @@
+#swagger/components/responses/Success.yaml
+description: OK
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        message:
+          type: string
+          example: Successfully!
+        data:
+          type: object
