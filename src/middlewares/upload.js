@@ -1,4 +1,3 @@
-//6
 //src/middlewares/upload.js
 import multer from 'multer';
 
