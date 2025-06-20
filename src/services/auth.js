@@ -48,13 +48,25 @@ export const sendResetEmail = async (email) => {
            <p>This link will expire in 5 minutes.</p>`,
   };
 
+  //заглушка
   try {
-    await transporter.sendMail(mailOptions);
+    console.log('📨 Письмо не отправлено, но вот что бы ушло:');
+    console.log(mailOptions);
+    console.log('Транспортер заглушен:', !!transporter);
+    return;
   } catch (error) {
     console.error('Email sending failed:', error);
-    throw createHttpError(500, `Failed to send the email: ${error.message}`);
-
+    return;
   }
+  //заглушка
+
+  //try {
+    //await transporter.sendMail(mailOptions);
+  //} catch (error) {
+    //console.error('Email sending failed:', error);
+    //throw createHttpError(500, `Failed to send the email: ${error.message}`);
+
+  //}
 };
 
 export const register = async ({ name, email, password }) => {
