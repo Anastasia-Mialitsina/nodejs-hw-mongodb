@@ -55,8 +55,8 @@ import authRouter from './routers/auth.js';
 import errorHandler from './middlewares/errorHandler.js';
 import notFoundHandler from './middlewares/notFoundHandler.js';
 
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../docs/swagger.json';
+//import swaggerUi from 'swagger-ui-express';
+//import swaggerDocument from '../docs/swagger.json';
 //import swaggerDocument from '../docs/swagger.json' assert { type: 'json' };
 
 const app = express();
@@ -79,7 +79,7 @@ app.use('/auth', authRouter);
 app.use('/contacts', contactsRouter);
 
 // Подключение Swagger UI на /api-docs
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(notFoundHandler);
 app.use(errorHandler);
