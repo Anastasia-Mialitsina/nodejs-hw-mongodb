@@ -81,7 +81,7 @@ app.use('/auth', authRouter);
 app.use('/contacts', contactsRouter);
 
 // Подключение Swagger UI на /api-docs
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(notFoundHandler);
 app.use(errorHandler);
