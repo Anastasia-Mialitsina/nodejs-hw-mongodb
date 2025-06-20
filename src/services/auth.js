@@ -52,7 +52,8 @@ export const sendResetEmail = async (email) => {
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error('Email sending failed:', error);
-    throw createHttpError(500, 'Failed to send the email: ${error.message}');
+    throw createHttpError(500, `Failed to send the email: ${error.message}`);
+
   }
 };
 
