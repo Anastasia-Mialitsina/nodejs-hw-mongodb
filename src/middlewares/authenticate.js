@@ -60,8 +60,7 @@ const authenticate = (req, res, next) => {
     }
 
     req.user = {
-      
-      _id: payload.userId, 
+      _id: payload.userId,
       email: payload.email,
     };
 

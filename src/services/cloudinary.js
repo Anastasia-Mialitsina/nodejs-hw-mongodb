@@ -1,4 +1,3 @@
-//6
 //src/middlewares/cloudinary.js
 import { v2 as cloudinary } from 'cloudinary';
 
