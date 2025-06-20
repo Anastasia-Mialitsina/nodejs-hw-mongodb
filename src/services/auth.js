@@ -49,24 +49,24 @@ export const sendResetEmail = async (email) => {
   };
 
   //заглушка
-  try {
-    console.log('📨 Письмо не отправлено, но вот что бы ушло:');
-    console.log(mailOptions);
-    console.log('Транспортер заглушен:', !!transporter);
-    return;
-  } catch (error) {
-    console.error('Email sending failed:', error);
-    return;
-  }
+  //try {
+    //console.log('📨 Письмо не отправлено, но вот что бы ушло:');
+    //console.log(mailOptions);
+    //console.log('Транспортер заглушен:', !!transporter);
+    //return;
+  //} catch (error) {
+   // console.error('Email sending failed:', error);
+   // return;
+  //}
   //заглушка
 
-  //try {
-    //await transporter.sendMail(mailOptions);
-  //} catch (error) {
-    //console.error('Email sending failed:', error);
-    //throw createHttpError(500, `Failed to send the email: ${error.message}`);
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Email sending failed:', error);
+    throw createHttpError(500, `Failed to send the email: ${error.message}`);
 
-  //}
+  }
 };
 
 export const register = async ({ name, email, password }) => {
