@@ -40,14 +40,51 @@ post:
                 example: 201
               message:
                 type: string
-                example: User registered successfully
+                example: Successfully registered a user!
               data:
                 type: object
                 properties:
-                  userId:
+                  _id:
                     type: string
-                    example: 6849f5449dc07a33d07263b0
+                    example: 6857027fd1ef8f1a6280ab3b
+                  name:
+                    type: string
+                    example: Anastasia
+                  email:
+                    type: string
+                    format: email
+                    example: anastasiaaaa@example.com
+                  createdAt:
+                    type: string
+                    format: date-time
+                    example: 2025-06-21T19:05:35.506Z
     '400':
       description: Помилка валідації
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: "\"email\" is required"
+              data:
+                type: 'null'
     '409':
       description: Користувач з таким email вже існує
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 409
+              message:
+                type: string
+                example: Email in use
+              data:
+                type: 'null'

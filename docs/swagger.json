@@ -77,14 +77,28 @@
                       },
                       "message": {
                         "type": "string",
-                        "example": "User registered successfully"
+                        "example": "Successfully registered a user!"
                       },
                       "data": {
                         "type": "object",
                         "properties": {
-                          "userId": {
+                          "_id": {
                             "type": "string",
-                            "example": "6849f5449dc07a33d07263b0"
+                            "example": "6857027fd1ef8f1a6280ab3b"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Anastasia"
+                          },
+                          "email": {
+                            "type": "string",
+                            "format": "email",
+                            "example": "anastasiaaaa@example.com"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2025-06-21T19:05:35.506Z"
                           }
                         }
                       }
@@ -94,10 +108,50 @@
               }
             },
             "400": {
-              "description": "Помилка валідації"
+              "description": "Помилка валідації",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "integer",
+                        "example": 400
+                      },
+                      "message": {
+                        "type": "string",
+                        "example": "\"email\" is required"
+                      },
+                      "data": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              }
             },
             "409": {
-              "description": "Користувач з таким email вже існує"
+              "description": "Користувач з таким email вже існує",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "integer",
+                        "example": 409
+                      },
+                      "message": {
+                        "type": "string",
+                        "example": "Email in use"
+                      },
+                      "data": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -115,7 +169,7 @@
           "requestBody": {
             "required": true,
             "content": {
-              "application/json": {
+              "multipart/form-data": {
                 "schema": {
                   "type": "object",
                   "required": [
@@ -126,7 +180,7 @@
                     "email": {
                       "type": "string",
                       "format": "email",
-                      "example": "anastasia@example.com"
+                      "example": "anastasiaaaa@example.com"
                     },
                     "password": {
                       "type": "string",
@@ -147,19 +201,19 @@
                     "type": "object",
                     "properties": {
                       "status": {
-                        "type": "integer",
-                        "example": 200
+                        "type": "string",
+                        "example": "success"
                       },
                       "message": {
                         "type": "string",
-                        "example": "User logged in successfully"
+                        "example": "Successfully logged in an user!"
                       },
                       "data": {
                         "type": "object",
                         "properties": {
-                          "token": {
+                          "accessToken": {
                             "type": "string",
-                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODU3MDI3ZmQxZWY4ZjFhNjI4MGFiM2IiLCJlbWFpbCI6ImFuYXN0YXNpYWFhYUBleGFtcGxlLmNvbSIsImlhdCI6MTc1MDUzMzYzMCwiZXhwIjoxNzUwNTM0NTMwfQ.2YGE5fT7VutMESE0jlS2iW66CPxkgAvcFXO44t1XRiY"
                           }
                         }
                       }
@@ -168,11 +222,29 @@
                 }
               }
             },
-            "400": {
-              "description": "Помилка валідації"
-            },
             "401": {
-              "description": "Невірний email або пароль"
+              "description": "Невірний email або пароль",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "integer",
+                        "example": 401
+                      },
+                      "message": {
+                        "type": "string",
+                        "example": "Invalid email or password"
+                      },
+                      "data": {
+                        "type": "null",
+                        "example": null
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

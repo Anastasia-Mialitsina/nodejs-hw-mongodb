@@ -8,7 +8,7 @@ post:
   requestBody:
     required: true
     content:
-      application/json:
+      multipart/form-data:
         schema:
           type: object
           required:
@@ -18,7 +18,7 @@ post:
             email:
               type: string
               format: email
-              example: anastasia@example.com
+              example: anastasiaaaa@example.com
             password:
               type: string
               format: password
@@ -32,18 +32,30 @@ post:
             type: object
             properties:
               status:
-                type: integer
-                example: 200
+                type: string
+                example: success
               message:
                 type: string
-                example: User logged in successfully
+                example: Successfully logged in an user!
               data:
                 type: object
                 properties:
-                  token:
+                  accessToken:
                     type: string
-                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-    '400':
-      description: Помилка валідації
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODU3MDI3ZmQxZWY4ZjFhNjI4MGFiM2IiLCJlbWFpbCI6ImFuYXN0YXNpYWFhYUBleGFtcGxlLmNvbSIsImlhdCI6MTc1MDUzMzYzMCwiZXhwIjoxNzUwNTM0NTMwfQ.2YGE5fT7VutMESE0jlS2iW66CPxkgAvcFXO44t1XRiY
     '401':
       description: Невірний email або пароль
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 401
+              message:
+                type: string
+                example: Invalid email or password
+              data:
+                type: 'null'
+                example: null
