@@ -20,7 +20,16 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/Contact.yaml'
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Contact found
+              data:
+                $ref: '../../../components/schemas/Contact.yaml'
     '404':
       description: Контакт не знайдено
       content:

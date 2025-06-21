@@ -3,24 +3,34 @@ type: object
 properties:
   _id:
     type: string
+    example: "64e5a34f2f0c1f001234abcd"
   name:
     type: string
+    example: "Іван Іванов"
   phoneNumber:
     type: string
+    example: "+380501234567"
   email:
     type: string
+    example: "ivan@example.com"
   isFavourite:
     type: boolean
+    example: false
   contactType:
     type: string
     enum: [home, work, personal]
+    example: "work"
   photo:
     type: string
+    example: "https://example.com/uploads/photo.jpg"
   userId:
     type: string
+    example: "64e5a34f2f0c1f001212abcd"
   createdAt:
     type: string
     format: date-time
+    example: "2024-06-21T12:34:56.789Z"
   updatedAt:
     type: string
     format: date-time
+    example: "2024-06-22T09:22:00.000Z"

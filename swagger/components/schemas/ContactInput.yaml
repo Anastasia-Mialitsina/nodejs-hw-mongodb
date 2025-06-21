@@ -16,10 +16,12 @@ properties:
     example: "+380501234567"
   contactType:
     type: string
-    enum:
-      - work
-      - home
-      - personal
+    enum: [work, home, personal]
+    example: "home"
   isFavourite:
     type: boolean
     default: false
+    example: true
+  photo:
+    type: string
+    format: binary

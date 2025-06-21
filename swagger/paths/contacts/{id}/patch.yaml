@@ -17,9 +17,29 @@ requestBody:
   description: Нові дані контакту
   required: true
   content:
-    application/json:
+    multipart/form-data:
       schema:
-        $ref: '../../../components/schemas/ContactInput.yaml'
+        type: object
+        properties:
+          name:
+            type: string
+            example: "Іван Іванов"
+          email:
+            type: string
+            format: email
+            example: "ivan@example.com"
+          phone:
+            type: string
+            example: "+380501234567"
+          contactType:
+            type: string
+            enum: [work, home, personal]
+          isFavourite:
+            type: boolean
+            default: false
+          photo:
+            type: string
+            format: binary
 responses:
   '200':
     description: Контакт успішно оновлено

@@ -11,8 +11,8 @@ tags:
   - name: Auth
   - name: Contacts
 servers:
-  - url: http://localhost:3000
-  - url: https://your-deployed-domain.com
+  - url: https://contacts-wyfk.onrender.com
+
 paths:
   /auth/register:
     post:
@@ -44,6 +44,7 @@ paths:
       $ref: '../swagger/paths/contacts/{id}/patch.yaml'
     delete:
       $ref: '../swagger/paths/contacts/{id}/delete.yaml'
+
 components:
   schemas:
     Contact:

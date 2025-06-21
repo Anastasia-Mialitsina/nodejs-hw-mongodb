@@ -13,3 +13,4 @@ content:
           example: Successfully!
         data:
           type: object
+          example: {}
