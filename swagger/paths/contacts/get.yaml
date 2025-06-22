@@ -1,4 +1,5 @@
 #swagger/paths/contacts/get.yaml
+#swagger/paths/contacts/get.yaml
 get:
 tags:
   - Contacts
@@ -62,10 +63,31 @@ responses:
               example: 200
             message:
               type: string
-              example: Contacts retrieved successfully
+              example: Successfully found contacts!
             data:
-              type: array
-              items:
-                $ref: '../../components/schemas/Contact.yaml'
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../../components/schemas/Contact.yaml'
+                page:
+                  type: integer
+                  example: 1
+                perPage:
+                  type: integer
+                  example: 10
+                totalItems:
+                  type: integer
+                  example: 1
+                totalPages:
+                  type: integer
+                  example: 1
+                hasPreviousPage:
+                  type: boolean
+                  example: false
+                hasNextPage:
+                  type: boolean
+                  example: false
   '401':
     description: Неавторизований доступ

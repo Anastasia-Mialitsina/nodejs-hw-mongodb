@@ -43,7 +43,52 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/Contact.yaml'
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Contact created
+            data:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 68580ac1105b7610d78f1acf
+                name:
+                  type: string
+                  example: Test Contact
+                phoneNumber:
+                  type: string
+                  example: "+380501234567"
+                email:
+                  type: string
+                  example: contact@example.com
+                isFavourite:
+                  type: boolean
+                  example: false
+                contactType:
+                  type: string
+                  example: work
+                photo:
+                  type: string
+                  example: ""
+                userId:
+                  type: string
+                  example: 6857c644766081aee0bba104
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: 2025-06-22T13:53:05.700Z
+                updatedAt:
+                  type: string
+                  format: date-time
+                  example: 2025-06-22T13:53:05.700Z
+                __v:
+                  type: integer
+                  example: 0
   '400':
     description: Некоректні дані
   '401':

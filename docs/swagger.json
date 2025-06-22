@@ -552,12 +552,41 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "Contacts retrieved successfully"
+                      "example": "Successfully found contacts!"
                     },
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Contact"
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Contact"
+                          }
+                        },
+                        "page": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "perPage": {
+                          "type": "integer",
+                          "example": 10
+                        },
+                        "totalItems": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "totalPages": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "hasPreviousPage": {
+                          "type": "boolean",
+                          "example": false
+                        },
+                        "hasNextPage": {
+                          "type": "boolean",
+                          "example": false
+                        }
                       }
                     }
                   }
@@ -635,7 +664,68 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Contact"
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact created"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "68580ac1105b7610d78f1acf"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Test Contact"
+                        },
+                        "phoneNumber": {
+                          "type": "string",
+                          "example": "+380501234567"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "contact@example.com"
+                        },
+                        "isFavourite": {
+                          "type": "boolean",
+                          "example": false
+                        },
+                        "contactType": {
+                          "type": "string",
+                          "example": "work"
+                        },
+                        "photo": {
+                          "type": "string",
+                          "example": ""
+                        },
+                        "userId": {
+                          "type": "string",
+                          "example": "6857c644766081aee0bba104"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-06-22T13:53:05.700Z"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-06-22T13:53:05.700Z"
+                        },
+                        "__v": {
+                          "type": "integer",
+                          "example": 0
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -795,19 +885,166 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Contact"
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact patched"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "68580ac1105b7610d78f1acf"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Test User"
+                        },
+                        "phoneNumber": {
+                          "type": "string",
+                          "example": "+380501234567"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "testuser@example.com"
+                        },
+                        "isFavourite": {
+                          "type": "boolean",
+                          "example": false
+                        },
+                        "contactType": {
+                          "type": "string",
+                          "example": "work"
+                        },
+                        "photo": {
+                          "type": "string",
+                          "example": ""
+                        },
+                        "userId": {
+                          "type": "string",
+                          "example": "6857c644766081aee0bba104"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-06-22T13:53:05.700Z"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-06-22T14:35:15.473Z"
+                        },
+                        "__v": {
+                          "type": "integer",
+                          "example": 0
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
           },
           "400": {
-            "description": "Некоректні дані"
+            "description": "Некоректні дані",
+            "content": {
+              "application/json": {
+                "oneOf": [
+                  {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "example": 400
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "\"email\" must be a valid email"
+                        },
+                        "data": {
+                          "type": "null",
+                          "example": null
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "example": 400
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid contact ID"
+                        },
+                        "data": {
+                          "type": "null",
+                          "example": null
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
           },
           "401": {
-            "description": "Неавторизований доступ"
+            "description": "Неавторизований доступ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 401
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "No access token provided"
+                    },
+                    "data": {
+                      "type": "null",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
           },
           "404": {
-            "description": "Контакт не знайдено"
+            "description": "Контакт не знайдено",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact not found"
+                    },
+                    "data": {
+                      "type": "null",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
