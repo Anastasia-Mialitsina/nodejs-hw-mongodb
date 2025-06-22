@@ -1,4 +1,5 @@
 #swagger/paths/contacts/{id}/delete.yaml
+delete:
 tags:
   - Contacts
 summary: Видалити контакт за ID

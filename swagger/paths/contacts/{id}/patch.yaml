@@ -1,4 +1,5 @@
 #swagger/paths/contacts/{id}/patch.yaml
+patch:
 tags:
   - Contacts
 summary: Оновити контакт за ID

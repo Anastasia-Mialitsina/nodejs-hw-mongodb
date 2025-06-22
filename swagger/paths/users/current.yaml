@@ -1,4 +1,4 @@
-#swagger/path/users/current.yaml
+#swagger/paths/users/current.yaml
 get:
   tags:
     - Auth
