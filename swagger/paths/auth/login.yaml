@@ -1,61 +1,61 @@
 #swagger/paths/auth/login.yaml
 post:
-  tags:
-    - Auth
-  summary: Логін користувача
-  operationId: loginUser
-  description: Авторизація користувача за електронною поштою та паролем, повертає JWT токен
-  requestBody:
-    required: true
+tags:
+  - Auth
+summary: Логін користувача
+operationId: loginUser
+description: Авторизація користувача за електронною поштою та паролем, повертає JWT токен
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            type: string
+            format: email
+            example: anastasiaaaa@example.com
+          password:
+            type: string
+            format: password
+            example: strongPassword123
+responses:
+  '200':
+    description: Успішний вхід, повертається JWT токен
     content:
-      multipart/form-data:
+      application/json:
         schema:
           type: object
-          required:
-            - email
-            - password
           properties:
-            email:
+            status:
               type: string
-              format: email
-              example: anastasiaaaa@example.com
-            password:
+              example: success
+            message:
               type: string
-              format: password
-              example: strongPassword123
-  responses:
-    '200':
-      description: Успішний вхід, повертається JWT токен
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                example: success
-              message:
-                type: string
-                example: Successfully logged in an user!
-              data:
-                type: object
-                properties:
-                  accessToken:
-                    type: string
-                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODU3MDI3ZmQxZWY4ZjFhNjI4MGFiM2IiLCJlbWFpbCI6ImFuYXN0YXNpYWFhYUBleGFtcGxlLmNvbSIsImlhdCI6MTc1MDUzMzYzMCwiZXhwIjoxNzUwNTM0NTMwfQ.2YGE5fT7VutMESE0jlS2iW66CPxkgAvcFXO44t1XRiY
-    '401':
-      description: Невірний email або пароль
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: integer
-                example: 401
-              message:
-                type: string
-                example: Invalid email or password
-              data:
-                type: 'null'
-                example: null
+              example: Successfully logged in an user!
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODU3MDI3ZmQxZWY4ZjFhNjI4MGFiM2IiLCJlbWFpbCI6ImFuYXN0YXNpYWFhYUBleGFtcGxlLmNvbSIsImlhdCI6MTc1MDUzMzYzMCwiZXhwIjoxNzUwNTM0NTMwfQ.2YGE5fT7VutMESE0jlS2iW66CPxkgAvcFXO44t1XRiY
+  '401':
+    description: Невірний email або пароль
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: Invalid email or password
+            data:
+              type: 'null'
+              example: null

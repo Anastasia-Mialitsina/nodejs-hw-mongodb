@@ -1,90 +1,90 @@
 #swagger/paths/auth/register.yaml
 post:
-  tags:
-    - Auth
-  summary: Реєстрація нового користувача
-  operationId: registerUser
-  description: Реєстрація нового користувача з іменем, електронною поштою та паролем
-  requestBody:
-    required: true
+tags:
+  - Auth
+summary: Реєстрація нового користувача
+operationId: registerUser
+description: Реєстрація нового користувача з іменем, електронною поштою та паролем
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            type: string
+            example: Anastasia
+          email:
+            type: string
+            format: email
+            example: anastasia@example.com
+          password:
+            type: string
+            format: password
+            example: strongPassword123
+responses:
+  '201':
+    description: Користувач успішно зареєстрований
     content:
-      multipart/form-data:
+      application/json:
         schema:
           type: object
-          required:
-            - name
-            - email
-            - password
           properties:
-            name:
+            status:
+              type: integer
+              example: 201
+            message:
               type: string
-              example: Anastasia
-            email:
+              example: Successfully registered a user!
+            data:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 6857027fd1ef8f1a6280ab3b
+                name:
+                  type: string
+                  example: Anastasia
+                email:
+                  type: string
+                  format: email
+                  example: anastasiaaaa@example.com
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: 2025-06-21T19:05:35.506Z
+  '400':
+    description: Помилка валідації
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
               type: string
-              format: email
-              example: anastasia@example.com
-            password:
+              example: "\"email\" is required"
+            data:
+              type: 'null'
+  '409':
+    description: Користувач з таким email вже існує
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 409
+            message:
               type: string
-              format: password
-              example: strongPassword123
-  responses:
-    '201':
-      description: Користувач успішно зареєстрований
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: integer
-                example: 201
-              message:
-                type: string
-                example: Successfully registered a user!
-              data:
-                type: object
-                properties:
-                  _id:
-                    type: string
-                    example: 6857027fd1ef8f1a6280ab3b
-                  name:
-                    type: string
-                    example: Anastasia
-                  email:
-                    type: string
-                    format: email
-                    example: anastasiaaaa@example.com
-                  createdAt:
-                    type: string
-                    format: date-time
-                    example: 2025-06-21T19:05:35.506Z
-    '400':
-      description: Помилка валідації
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: integer
-                example: 400
-              message:
-                type: string
-                example: "\"email\" is required"
-              data:
-                type: 'null'
-    '409':
-      description: Користувач з таким email вже існує
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: integer
-                example: 409
-              message:
-                type: string
-                example: Email in use
-              data:
-                type: 'null'
+              example: Email in use
+            data:
+              type: 'null'
